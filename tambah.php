@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $_SESSION['pesan'] = "Kode barang sudah ada!";
         $_SESSION['tipe'] = "error";
+
     } else {
 
         $query = "INSERT INTO barang 
@@ -42,11 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->execute([$kode_barang, $nama_barang, $kategori, $jumlah, $tanggal_masuk, $harga])) {
 
-            $_SESSION['pesan'] = "Barang berhasil ditambahkan";
-            $_SESSION['tipe'] = "success";
-
+            // pesan sukses dihapus
             header("Location: index.php?page=data_barang");
             exit();
+
         } else {
 
             $_SESSION['pesan'] = "Gagal menambahkan barang";

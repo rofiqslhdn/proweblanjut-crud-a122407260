@@ -49,9 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id
     ])) {
 
-        $_SESSION['pesan'] = "Barang berhasil diperbarui!";
-        $_SESSION['tipe']  = "success";
-
+        // pesan sukses dihapus
         header("Location: index.php?page=data_barang");
         exit();
     } else {
