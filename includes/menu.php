@@ -1,5 +1,15 @@
 <?php
 
+$user_name = "Guest";
+if (isset($_SESSION['user_id'])) {
+    $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
+    $stmt->execute([$_SESSION['user_id']]);
+    $user = $stmt->fetch();
+    if ($user) {
+        $user_name = htmlspecialchars($user['username']);
+    }
+}
+
 $menu_items = array(
 
     'dashboard' => array(
@@ -26,6 +36,14 @@ $menu_items = array(
 
 <!-- Sidebar Menu -->
 <aside class="sidebar">
+    <div class="sidebar-profile">
+        <div class="profile-avatar">
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="profile-info">
+            <h4 class="profile-name"><?php echo $user_name; ?></h4>
+        </div>
+    </div>
 
     <nav class="main-menu">
         <ul>
