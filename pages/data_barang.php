@@ -1,6 +1,7 @@
 <?php
 include 'koneksi.php';
 
+// Menggunakan Prepared Statement untuk mengambil data
 $stmt = $pdo->prepare("SELECT * FROM barang ORDER BY id DESC");
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -12,11 +13,9 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h3>DATA BARANG GAMING</h3>
 
         <div class="card-actions">
-
             <a href="tambah.php" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Tambah Barang
             </a>
-
         </div>
     </div>
 
@@ -29,7 +28,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Barang</th>
+                        <th>Gambar</th> <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Kategori</th>
                         <th>Stok</th>
@@ -49,6 +48,18 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <tr>
 
                                 <td><?php echo $no++; ?></td>
+
+                                <td class="img-column">
+                                    <?php if (!empty($row['gambar']) && file_exists("assets/img/" . $row['gambar'])): ?>
+                                        <img src="assets/img/<?php echo $row['gambar']; ?>" 
+                                             alt="Produk" 
+                                             class="img-thumbnail-custom">
+                                    <?php else: ?>
+                                        <div class="img-placeholder">
+                                            <i class="fas fa-image"></i>
+                                        </div>
+                                    <?php endif; ?>
+                                </td>
 
                                 <td>
                                     <strong>
@@ -85,18 +96,14 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <a href="edit.php?id=<?php echo $row['id']; ?>"
                                         class="btn-action btn-edit"
                                         title="Edit">
-
                                         <i class="fas fa-edit"></i>
-
                                     </a>
 
                                     <a href="hapus.php?id=<?php echo $row['id']; ?>"
                                         class="btn-action btn-delete"
                                         title="Hapus"
                                         onclick="return confirm('Yakin hapus barang ini?')">
-
                                         <i class="fas fa-trash"></i>
-
                                     </a>
 
                                 </td>
@@ -107,7 +114,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php else: ?>
                         <tr>
-                            <td colspan="8" class="text-center">
+                            <td colspan="9" class="text-center">
 
                                 <div class="empty-state">
 
