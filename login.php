@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
 
 $error = "";
 
-// 3. Proses Login saat Form di-submit [cite: 43]
+// Proses Login saat Form di-submit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $password = $_POST["password"];
