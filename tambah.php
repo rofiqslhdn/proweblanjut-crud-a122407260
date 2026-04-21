@@ -99,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $query = "INSERT INTO barang 
                         (kode_barang, nama_barang, kategori, jumlah, tanggal_masuk, harga, gambar)
                         VALUES (?, ?, ?, ?, ?, ?, ?)";
-
                 $stmt = $pdo->prepare($query);
 
                 if ($stmt->execute([$kode_barang, $nama_barang, $kategori, $jumlah, $tanggal_masuk, $harga, $gambar])) {
