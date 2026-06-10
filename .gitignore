@@ -1,0 +1,35 @@
+# IDE and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.settings/
+.buildpath
+
+# OS Specific Files
+Thumbs.db
+db.db
+desktop.ini
+.DS_Store
+
+# PHP and Packages
+vendor/
+composer.lock
+.phpunit.result.cache
+
+# Logs and Temp Files
+*.log
+tmp/
+temp/
+
+# Environment and Credentials
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config.local.php
