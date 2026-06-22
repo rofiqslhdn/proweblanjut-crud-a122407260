@@ -1,10 +1,16 @@
 <?php
-// Memuat koneksi database & inisialisasi session
 require_once __DIR__ . '/../config/koneksi.php';
 
-// Fitur Remember Me: Auto-login dengan Cookie jika session kosong tapi cookie ada
 if (!isset($_SESSION['user_id']) && isset($_COOKIE['remember_user'])) {
-    $_SESSION['user_id'] = $_COOKIE['remember_user'];
+    require_once __DIR__ . '/../app/models/User.php';
+    $userModel = new User($pdo);
+    
+    $userX = $userModel->getById($_COOKIE['remember_user']);
+    if ($userX) {
+        $_SESSION['user_id'] = $userX['id'];
+    } else {
+        setcookie('remember_user', '', time() - 3600, "/");
+    }
 }
 
 // Menentukan halaman aktif (Default: dashboard)

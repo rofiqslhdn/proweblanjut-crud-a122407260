@@ -21,7 +21,7 @@
             <div class="error-msg"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
         <?php if(isset($_SESSION['pesan'])): ?>
-            <div class="success-msg" style="background-color: rgba(76, 175, 80, 0.2); color: #4CAF50; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px; text-align: center; border: 1px solid #4CAF50;">
+            <div class="success-msg">
                 <?php echo htmlspecialchars($_SESSION['pesan']); ?>
             </div>
             <?php unset($_SESSION['pesan']); ?>
